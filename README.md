@@ -1,10 +1,10 @@
 # usma_velodyne
 
 #### 1. Install the velodyne laser packages from github.
-    1. cd ~/catkin_ws/src
-    2. git clone https://github.com/ros-drivers/velodyne.git
-    3. cd ~/catkin_make
-    4. catkin_make
+1. `cd ~/catkin_ws/src`
+2. `git clone https://github.com/ros-drivers/velodyne.git`
+3. `cd ~/catkin_make`
+4. `catkin_make`
 
 #### 2. Make a network connection for the velodyne VLP16.
 1. # In the project root directory the network settings are saved in a file called velodyneVLP16 and veldoyne32E.
