@@ -1,0 +1,17 @@
+[802-3-ethernet]
+duplex=full
+
+[connection]
+id=Velodyne32E
+uuid=676bbd07-0501-4f1e-b4d9-e3ee850e7814
+type=802-3-ethernet
+autoconnect=false
+timestamp=1454020250
+
+[ipv6]
+method=auto
+
+[ipv4]
+method=manual
+address1=192.168.3.100/24,0.0.0.0
+route1=192.168.17.215/32,0.0.0.0,0
