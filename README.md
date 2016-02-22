@@ -24,9 +24,7 @@ or
 
     roslaunch velodyne_pointcloud  32e_points.launch
 
-To see if the velodyne is working you can run:
-    sudo tcpdump -i eth0
-But tcpdump doesn't garuntee that ROS can see the data. If the route is not set up properly you will see data streaming in tcpdump but ROS will not be able to access to it.
+To see if the velodyne is working you can run: `sudo tcpdump -i eth0` But tcpdump doesn't garuntee that ROS can see the data. If the route is not set up properly you will see data streaming in tcpdump but ROS will not be able to access to it.
 
 #### Alternative method with manual settings below here.
 This needs updated !!!
