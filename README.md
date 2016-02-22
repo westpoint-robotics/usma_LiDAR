@@ -7,15 +7,15 @@
     4. catkin_make
 
 #### 2. Make a network connection for the velodyne VLP16.
-    1. # In the project root directory the network settings are saved in a file called velodyneVLP16 and veldoyne32E.
-    2. `sudo chown root:root velodyneVLP16`
-    3. `sudo chown root:root velodyne32E`
-    4. `sudo chmod 600 velodyneVLP16`
-    5. `sudo chmod 600 velodyneV32E`
-    6. `sudo cp velodyneVLP16 /etc/NetworkManager/system-connections/`
-    7. `sudo cp velodyne32E /etc/NetworkManager/system-connections/`
-    8. `sudo service network-manager restart`
-    9. # In the network-manager gui, connect to velodyneVLP16 or velodyne32E
+1. # In the project root directory the network settings are saved in a file called velodyneVLP16 and veldoyne32E.
+2. `sudo chown root:root velodyneVLP16`
+3. `sudo chown root:root velodyne32E`
+4. `sudo chmod 600 velodyneVLP16`
+5. `sudo chmod 600 velodyneV32E`
+6. `sudo cp velodyneVLP16 /etc/NetworkManager/system-connections/`
+7. `sudo cp velodyne32E /etc/NetworkManager/system-connections/`
+8. `sudo service network-manager restart`
+9. # In the network-manager gui, connect to velodyneVLP16 or velodyne32E
 
 #### 3. Test connection by running 
 
