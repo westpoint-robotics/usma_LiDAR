@@ -73,6 +73,17 @@
 
 </macro>
 
+<macro name="velodyne_64" params="parent_frame parent_link prefix">
+    
+  <property name="velodyne_mass" value="3.0" />
+  <property name="velodyne_radius" value="0.18" />
+  <property name="velodyne_height" value="0.17" />
+  <property name="velodyne_top_height" value="0.22" />
+  <property name="velodyne_height_to_center_lasers" value="0.22" />
+  <velodyne parent_frame="${parent_frame}" parent_link="${parent_link}" prefix="${prefix}_64" num_lasers="64" min_angle="-0.53529" max_angle="0.1862" visual_rpy_offset="1.57 0 1.57"/>
+
+</macro>
+
 <macro name="velodyne" params="parent_link parent_frame prefix num_lasers min_angle max_angle visual_rpy_offset">
    <joint name="${parent_link}_to_velodyne" type="fixed">
     <axis xyz="0 1 0" />
@@ -124,7 +135,7 @@
     </inertial>
  </link>
 
-<gazebo reference="velodyne_laser_spin">
+  <gazebo reference="velodyne_laser_spin">
     <sensor type="gpu_ray" name="velodyne_sensor">
       <pose>0 0 0 0 0 0</pose>
       <visualize>true</visualize>
