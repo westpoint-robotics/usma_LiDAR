@@ -11,7 +11,7 @@
 2. `sudo chown root:root velodyneVLP16`
 3. `sudo chown root:root velodyne32E`
 4. `sudo chmod 600 velodyneVLP16`
-5. `sudo chmod 600 velodyneV32E`
+5. `sudo chmod 600 velodyne32E`
 6. `sudo cp velodyneVLP16 /etc/NetworkManager/system-connections/`
 7. `sudo cp velodyne32E /etc/NetworkManager/system-connections/`
 8. `sudo service network-manager restart`
@@ -19,12 +19,17 @@
 
 #### 3. Test connection by running 
 
-    roslaunch velodyne_pointcloud  VLP16_points.launch
+    `roslaunch velodyne_pointcloud  VLP16_points.launch`
 or
 
-    roslaunch velodyne_pointcloud  32e_points.launch
+    `roslaunch velodyne_pointcloud  32e_points.launch`
 
-To see if the velodyne is working you can run: `sudo tcpdump -i eth0` But tcpdump doesn't garuntee that ROS can see the data. If the route is not set up properly you will see data streaming in tcpdump but ROS will not be able to access to it.
+To see if the velodyne is working you can run: `sudo tcpdump -i eth0` But tcpdump doesn't guarantee that ROS can see the data. If the route is not set up properly you will see data streaming in tcpdump but ROS will not be able to access to it.
+
+To see a visualization run the following commands:
+1. `roscd usma_velodyne`
+2. `rviz -d launch/velodyne_bare.rviz`
+
 
 #### Alternative method with manual settings below here.
 This needs updated !!!
