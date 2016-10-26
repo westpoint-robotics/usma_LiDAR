@@ -26,7 +26,7 @@ or
 
 To see if the velodyne is working you can run: `sudo tcpdump -i eth0` But tcpdump doesn't guarantee that ROS can see the data. If the route is not set up properly you will see data streaming in tcpdump but ROS will not be able to access to it.
 
-To see a visualization run the following commands:
+##### To see a visualization run the following commands:
 1. `roscd usma_velodyne`
 2. `rviz -d launch/velodyne_bare.rviz`
 
