@@ -3,7 +3,7 @@
 #### 1. Install the velodyne laser packages from github.
 1. `cd ~/catkin_ws/src`
 2. `git clone https://github.com/ros-drivers/velodyne.git`
-3. `cd ~/catkin_make`
+3. `cd ~/catkin_ws`
 4. `catkin_make`
 
 #### 2. Make a network connection for the velodyne VLP16.

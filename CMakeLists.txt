@@ -53,8 +53,9 @@ catkin_package(
     gazebo 
     SDF
   )
-add_library(gazebo_ros_gpu_velodyne src/gazebo_ros_gpu_velodyne.cpp)
-target_link_libraries(gazebo_ros_gpu_velodyne ${catkin_LIBRARIES} ${GAZEBO_LIBRARIES} GpuRayPlugin)
+# Only uncomment the below lines if you plan to build a simulated velodyne
+# add_library(gazebo_ros_gpu_velodyne src/gazebo_ros_gpu_velodyne.cpp)
+# target_link_libraries(gazebo_ros_gpu_velodyne ${catkin_LIBRARIES} ${GAZEBO_LIBRARIES} GpuRayPlugin)
 ###
 ### Add your new plugin here
 ###
