@@ -1,17 +1,24 @@
-[802-3-ethernet]
-duplex=full
-
 [connection]
 id=Velodyne16
 uuid=6fa2f949-90a1-41d3-a1af-21eb84b5eb9f
-type=802-3-ethernet
+type=ethernet
 autoconnect=false
+permissions=
+secondaries=
 timestamp=1453745847
 
-[ipv6]
-method=auto
+[ethernet]
+duplex=full
+mac-address-blacklist=
 
 [ipv4]
+address1=192.168.1.100/24
+dns-search=
 method=manual
-address1=192.168.3.100/24,0.0.0.0
-route1=192.168.1.201/32,0.0.0.0,0
+route1=192.168.1.201/32
+
+[ipv6]
+addr-gen-mode=eui64
+dns-search=
+ip6-privacy=0
+method=auto

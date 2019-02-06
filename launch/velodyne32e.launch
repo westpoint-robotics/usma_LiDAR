@@ -35,4 +35,6 @@
 
     </node>
 
+  <node type="rviz" name="rviz" pkg="rviz" args="-d $(find usma_velodyne)/launch/velodyne_bare.rviz" />
+
 </launch>

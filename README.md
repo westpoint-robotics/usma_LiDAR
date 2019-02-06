@@ -5,6 +5,8 @@
 2. `git clone https://github.com/ros-drivers/velodyne.git`
 3. `cd ~/catkin_ws`
 4. `catkin_make`
+5. `sudo apt-get install ros-kinetic-pointcloud-to-laserscan` 
+
 
 #### 2. Make a network connection for the velodyne VLP16.
 1. # In the project root directory the network settings are saved in a file called velodyneVLP16 and veldoyne32E.
