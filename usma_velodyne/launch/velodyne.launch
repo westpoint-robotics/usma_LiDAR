@@ -1,0 +1,16 @@
+<launch>
+
+  <arg name="use_rviz" default="true" />
+  <arg name="parent" default="base_link" />
+  <!-- add a static route: sudo route add 192.168.17.214 eth0 -->
+
+  <include file="$(find velodyne_pointcloud)/launch/32e_points.launch"/>
+  <arg name="calibration" default="$(find usma_velodyne)/calibration/32db.yaml"/>
+
+  <!-- Required parameters -->
+  <arg name="manager" value="velodyne_nodelet_manager"/>
+  <arg name="output_topic" value="/velodyne"/>
+
+  <node name="rviz" pkg="rviz" type="rviz" respawn="false" output="screen" />
+
+</launch>

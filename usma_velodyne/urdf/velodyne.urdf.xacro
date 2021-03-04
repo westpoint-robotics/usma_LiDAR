@@ -1,0 +1,178 @@
+<?xml version="1.0"?>
+
+<robot
+    xmlns:xacro="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
+    xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor"
+    xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller"
+    xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface">
+    
+    <!-- Properties (Constants) -->
+    <property name="M_PI" value="3.14159"/>
+
+<macro name="velodyne_16_w_mast" params="parent_frame parent_link prefix">
+  <velodyne_16 parent_frame="${parent_frame}" parent_link="velodyne_mast_top" prefix="${prefix}" />
+  <velodyne_mast parent="${parent_link}" prefix="${prefix}" />
+</macro>
+
+<macro name="velodyne_32_w_mast" params="parent_frame parent_link prefix">
+  <velodyne_32 parent_frame="${parent_frame}" parent_link="velodyne_mast_top" prefix="${prefix}" />
+  <velodyne_mast parent="${parent_link}" prefix="${prefix}" />
+</macro>
+
+<macro name="velodyne_mast" params="parent prefix">
+
+  <joint name="velodyne_mast_joint" type="fixed">
+    <axis xyz="0 1 0" />
+    <origin xyz="0 0 0.17" rpy="0 0 0"/>
+    <parent link="${parent}"/>
+    <child link="velodyne_mast_top"/>
+  </joint>
+
+  <link name="velodyne_mast_top">
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.0525" length="0.176"/>
+      </geometry>
+    </collision>
+
+    <visual>
+      <origin xyz="-0.04 0.09 -0.21" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://usma_velodyne/meshes/mast_link.STL"/>  
+      </geometry>
+      <material name="black">
+        <color rgba="0.0 0.0 0.0 1.0"/>
+      </material>
+
+    </visual>
+
+  </link>
+
+</macro>
+
+<macro name="velodyne_16" params="parent_frame parent_link prefix">
+    
+  <property name="velodyne_mass" value="1.0" />
+  <property name="velodyne_radius" value="0.085" />
+  <property name="velodyne_height" value="0.0825" />
+  <property name="velodyne_top_height" value="0.1" />
+  <property name="velodyne_height_to_center_lasers" value="0.1" />
+  <velodyne parent_frame="${parent_frame}" parent_link="${parent_link}" prefix="${prefix}_16" num_lasers="16" min_angle="-0.26179" max_angle="0.26179" visual_rpy_offset="0 0 3.14" />
+
+</macro>
+
+<macro name="velodyne_32" params="parent_frame parent_link prefix">
+    
+  <property name="velodyne_mass" value="2.0" />
+  <property name="velodyne_radius" value="0.085" />
+  <property name="velodyne_height" value="0.0825" />
+  <property name="velodyne_top_height" value="0.1" />
+  <property name="velodyne_height_to_center_lasers" value="0.1" />
+  <velodyne parent_frame="${parent_frame}" parent_link="${parent_link}" prefix="${prefix}_32" num_lasers="32" min_angle="-0.53529" max_angle="0.1862" visual_rpy_offset="1.57 0 1.57"/>
+
+</macro>
+
+<macro name="velodyne_64" params="parent_frame parent_link prefix">
+    
+  <property name="velodyne_mass" value="3.0" />
+  <property name="velodyne_radius" value="0.18" />
+  <property name="velodyne_height" value="0.17" />
+  <property name="velodyne_top_height" value="0.22" />
+  <property name="velodyne_height_to_center_lasers" value="0.22" />
+  <velodyne parent_frame="${parent_frame}" parent_link="${parent_link}" prefix="${prefix}_64" num_lasers="64" min_angle="-0.53529" max_angle="0.1862" visual_rpy_offset="1.57 0 1.57"/>
+
+</macro>
+
+<macro name="velodyne" params="parent_link parent_frame prefix num_lasers min_angle max_angle visual_rpy_offset">
+   <joint name="${parent_link}_to_velodyne" type="fixed">
+    <axis xyz="0 1 0" />
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <parent link="${parent_link}"/>
+    <child link="velodyne_laser_static"/>
+  </joint>
+  <joint name="velodyne_spindle" type="continuous">
+    <axis xyz="0 1 0" />
+    <origin xyz="0 0 0.1" rpy="1.57 0 0"/>
+    <parent link="velodyne_laser_static"/>
+    <child link="velodyne_laser_spin"/>
+  </joint>
+
+  <link name="velodyne_laser_spin">
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.1 0.1 0.1"/>
+      </geometry>
+    </collision>
+
+    <inertial>
+      <mass value="1e-5" />
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+    </inertial>
+  </link>
+
+  <link name="velodyne_laser_static">
+     <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.1 0.1 0.1"/>
+      </geometry>
+    </collision>
+
+    <visual>
+      <origin xyz="0 0 0" rpy="${visual_rpy_offset}"/>
+      <geometry>
+        <mesh filename="package://usma_velodyne/meshes/${num_lasers}.STL"/>  
+      </geometry>
+    </visual>
+
+    <inertial>
+      <mass value="1" />
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="1" ixy="0" ixz="0" iyy="1" iyz="0" izz="1" />
+    </inertial>
+ </link>
+
+  <gazebo reference="velodyne_laser_spin">
+    <sensor type="gpu_ray" name="velodyne_sensor">
+      <pose>0 0 0 0 0 0</pose>
+      <visualize>true</visualize>
+      <update_rate>6000</update_rate>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>${num_lasers}</samples>
+            <resolution>1</resolution>
+            <min_angle>${min_angle}</min_angle>
+            <max_angle>${max_angle}</max_angle>
+          </horizontal>
+        </scan>
+        <range>
+          <min>0.10</min>
+          <max>100.0</max>
+          <resolution>0.001</resolution>
+        </range>
+        <noise>
+          <type>gaussian</type>
+          <!-- Noise parameters based on published spec for Hokuyo laser
+               achieving "+-30mm" accuracy at range < 10m.  A mean of 0.0m and
+               stddev of 0.01m will put 99.7% of samples within 0.03m of the true
+               reading. -->
+          <mean>0.0</mean>
+          <stddev>0.0</stddev>
+        </noise>
+      </ray>
+      <plugin name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_gpu_velodyne.so">
+        <topicName>/velodyne_points</topicName>
+        <frameName>${parent_frame}</frameName>
+        <spinFrameName>velodyne_laser_spin</spinFrameName>
+        <staticFrameName>${parent_frame}</staticFrameName>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+</macro>
+
+</robot>
